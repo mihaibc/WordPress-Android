@@ -4,7 +4,7 @@ ext {
     wordPressLoginVersion = '0.0.9'
     gutenbergMobileVersion = 'v1.71.1'
     storiesVersion = '1.2.1'
-    aboutAutomatticVersion = '0.0.4'
+    aboutAutomatticVersion = '0.0.2'
 
     minSdkVersion = 24
     compileSdkVersion = 31
