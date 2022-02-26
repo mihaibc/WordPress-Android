@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:motion="http://schemas.android.com/tools">
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint android:id="@+id/nestedScrollView" />
+        <Constraint
+            android:id="@id/avatar"
+            android:layout_marginTop="10dp"
+            android:layout_width="@dimen/avatar_sz_small"
+            android:layout_height="@dimen/avatar_sz_small"
+            android:layout_marginEnd="@dimen/me_menu_avatar_end_offset"
+            android:maxHeight="@dimen/avatar_sz_medium"
+            android:minHeight="@dimen/avatar_sz_small"
+            android:padding="@dimen/me_avatar_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"/>
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint android:id="@id/nestedScrollView" />
+
+        <Constraint
+            android:id="@id/avatar"
+            android:layout_marginTop="10dp"
+            android:layout_width="@dimen/avatar_sz_small"
+            android:layout_height="@dimen/avatar_sz_small"
+            android:layout_marginEnd="@dimen/me_menu_avatar_end_offset"
+            android:maxHeight="@dimen/avatar_sz_medium"
+            android:minHeight="@dimen/avatar_sz_small"
+            android:padding="@dimen/me_avatar_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"/>
+
+    </ConstraintSet>
+
+    <Transition
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@+id/start" />
+</MotionScene>

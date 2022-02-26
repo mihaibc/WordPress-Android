@@ -5,31 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar_main"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/prominent_toolbar_height"
-        android:fitsSystemWindows="true"
-        app:liftOnScroll="false">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
-            style="@style/WordPress.CollapsedToolbarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:title="@string/my_site_section_screen_title">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar_main"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:theme="@style/WordPress.ActionBar" />
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -64,6 +41,20 @@
             </org.wordpress.android.util.widgets.CustomSwipeRefreshLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:visibility="visible"
+        app:liftOnScroll="false">
+
+        <include
+            android:id="@+id/header"
+            layout = "@layout/my_site_fragment_motion_layout_custom_header"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <org.wordpress.android.ui.ActionableEmptyView
         android:id="@+id/actionable_empty_view"

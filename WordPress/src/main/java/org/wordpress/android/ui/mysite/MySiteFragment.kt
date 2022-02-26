@@ -5,16 +5,17 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
 import androidx.annotation.StringRes
-import androidx.appcompat.widget.TooltipCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.yalantis.ucrop.UCrop
 import com.yalantis.ucrop.UCrop.Options
 import com.yalantis.ucrop.UCropActivity
@@ -22,6 +23,7 @@ import org.wordpress.android.R
 import org.wordpress.android.WordPress
 import org.wordpress.android.analytics.AnalyticsTracker
 import org.wordpress.android.databinding.MySiteFragmentBinding
+import org.wordpress.android.databinding.MySiteFragmentMotionLayoutCustomHeaderBinding
 import org.wordpress.android.fluxc.store.QuickStartStore.QuickStartTask
 import org.wordpress.android.ui.ActivityLauncher
 import org.wordpress.android.ui.FullScreenDialogFragment
@@ -36,6 +38,9 @@ import org.wordpress.android.ui.domains.DomainRegistrationActivity.DomainRegistr
 import org.wordpress.android.ui.main.SitePickerActivity
 import org.wordpress.android.ui.main.WPMainActivity
 import org.wordpress.android.ui.main.utils.MeGravatarLoader
+import org.wordpress.android.ui.mysite.MySiteCardAndItem.Card
+import org.wordpress.android.ui.mysite.MySiteCardAndItem.Card.SiteInfoCard
+import org.wordpress.android.ui.mysite.MySiteCardAndItem.Card.SiteInfoCard.IconState
 import org.wordpress.android.ui.mysite.MySiteViewModel.State
 import org.wordpress.android.ui.mysite.SiteIconUploadHandler.ItemUploadedModel
 import org.wordpress.android.ui.mysite.dynamiccards.DynamicCardMenuFragment
@@ -69,6 +74,7 @@ import org.wordpress.android.util.WPSwipeToRefreshHelper.buildSwipeToRefreshHelp
 import org.wordpress.android.util.getColorFromAttribute
 import org.wordpress.android.util.helpers.SwipeToRefreshHelper
 import org.wordpress.android.util.image.ImageManager
+import org.wordpress.android.util.image.ImageType.BLAVATAR
 import org.wordpress.android.util.image.ImageType.USER
 import org.wordpress.android.util.setVisible
 import org.wordpress.android.viewmodel.observeEvent
@@ -95,6 +101,7 @@ class MySiteFragment : Fragment(R.layout.my_site_fragment),
     private lateinit var swipeToRefreshHelper: SwipeToRefreshHelper
 
     private var binding: MySiteFragmentBinding? = null
+    private var collapsingToolbarLayout: CollapsingToolbarLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -119,14 +126,8 @@ class MySiteFragment : Fragment(R.layout.my_site_fragment),
     }
 
     private fun MySiteFragmentBinding.setupToolbar() {
-        toolbarMain.let { toolbar ->
-            toolbar.inflateMenu(R.menu.my_site_menu)
-            toolbar.menu.findItem(R.id.me_item)?.let { meMenu ->
-                meMenu.actionView.let { actionView ->
-                    actionView.setOnClickListener { viewModel.onAvatarPressed() }
-                    TooltipCompat.setTooltipText(actionView, meMenu.title)
-                }
-            }
+        header.avatar.setOnClickListener {
+            viewModel.onAvatarPressed()
         }
 
         val avatar = root.findViewById<ImageView>(R.id.avatar)
@@ -531,6 +532,11 @@ class MySiteFragment : Fragment(R.layout.my_site_fragment),
     }
 
     private fun MySiteFragmentBinding.loadData(cardAndItems: List<MySiteCardAndItem>) {
+        val mySiteInfoCard = cardAndItems.filterIsInstance<Card>().filterIsInstance<SiteInfoCard>()[0]
+        Log.e("siteInfo Card", mySiteInfoCard.toString())
+        header.loadMySiteDetails(mySiteInfoCard)
+
+        collapsingToolbarLayout?.title = mySiteInfoCard.title
         recyclerView.setVisible(true)
         actionableEmptyView.setVisible(false)
         viewModel.setActionableEmptyViewGone(actionableEmptyView.isVisible) {
@@ -568,6 +574,30 @@ class MySiteFragment : Fragment(R.layout.my_site_fragment),
                     )
             )
         }
+    }
+
+    private fun MySiteFragmentMotionLayoutCustomHeaderBinding.loadMySiteDetails(item:SiteInfoCard) {
+//        if (item.iconState is IconState.Visible) {
+//            mySiteBlavatar.visibility = View.VISIBLE
+//            imageManager.load(mySiteBlavatar, BLAVATAR, item.iconState.url ?: "")
+//            mySiteIconProgress.visibility = View.GONE
+//            mySiteBlavatar.setOnClickListener { item.onIconClick.click() }
+//        } else if (item.iconState is IconState.Progress) {
+//            mySiteBlavatar.setOnClickListener(null)
+//            mySiteIconProgress.visibility = View.VISIBLE
+//            mySiteBlavatar.visibility = View.GONE
+//        }
+//        quickStartIconFocusPoint.setVisibleOrGone(true)
+        if (item.onTitleClick != null) {
+            siteInfoContainer.title.setOnClickListener { item.onTitleClick.click() }
+        } else {
+            siteInfoContainer.title.setOnClickListener(null)
+        }
+        siteInfoContainer.title.text = item.title
+//        quickStartTitleFocusPoint.setVisibleOrGone(true)
+        siteInfoContainer.subtitle.text = item.url
+        siteInfoContainer.subtitle.setOnClickListener { item.onUrlClick.click() }
+        switchSite.setOnClickListener { item.onSwitchSiteClick.click() }
     }
 
     private fun showSwipeToRefreshLayout(isEnabled: Boolean) {
