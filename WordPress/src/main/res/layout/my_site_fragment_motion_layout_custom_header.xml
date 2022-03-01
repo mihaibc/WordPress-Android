@@ -1,21 +1,33 @@
 <org.wordpress.android.ui.mysite.CollapsibleToolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/motionLayout"
-    app:layoutDescription="@xml/my_site_fragment_motion_layout_scene"
+    android:id="@+id/constraintToolbar"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:minHeight="50dp"
-    android:fitsSystemWindows="false"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    app:layoutDescription="@xml/my_site_fragment_motion_layout_scene"
+    android:minHeight="?attr/actionBarSize"
     app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed">
 
 
+    <ImageButton
+        android:id="@+id/switch_site"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_oval"
+        android:contentDescription="@string/my_site_btn_switch_site"
+        android:padding="@dimen/margin_large"
+        android:src="@drawable/ic_chevron_down_white_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/avatar"
+        app:tint="?attr/wpColorOnSurfaceMedium" />
+
     <ImageView
         android:id="@+id/avatar"
-        android:layout_marginTop="10dp"
         android:layout_width="@dimen/avatar_sz_small"
         android:layout_height="@dimen/avatar_sz_small"
-        android:layout_marginEnd="@dimen/me_menu_avatar_end_offset"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:background="?android:attr/actionBarItemBackground"
         android:contentDescription="@null"
         android:foreground="@drawable/bg_oval_transparent_stroke_on_surface_lowest"
@@ -25,7 +37,37 @@
         android:src="@drawable/ic_user_white_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UnusedAttribute" />
+        tools:ignore="ContentDescription" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/my_site_title_label"
+        style="@style/MySiteTitleLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Site Title"
+        app:autoSizeMaxTextSize="@dimen/my_site_name_label_single_line_text_size"
+        app:autoSizeMinTextSize="@dimen/my_site_name_label_double_line_text_size"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toStartOf="@+id/switch_site"
+        app:layout_constraintStart_toEndOf="@+id/blavatar_container"
+        app:layout_constraintTop_toBottomOf="@+id/avatar" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/my_site_subtitle_label"
+        style="@style/MySiteSubtitleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:gravity="top"
+        android:text="example.wordpress.com"
+        app:icon="@drawable/ic_external_white_24dp"
+        app:iconGravity="textEnd"
+        app:layout_constraintEnd_toStartOf="@+id/switch_site"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/blavatar_container"
+        app:layout_constraintTop_toBottomOf="@+id/my_site_title_label" />
+
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/blavatar_container"
@@ -36,7 +78,6 @@
         android:layout_marginStart="@dimen/margin_extra_large"
         app:cardCornerRadius="@dimen/my_site_blavatar_container_corner_radius"
         app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/avatar"
         app:strokeColor="@color/on_surface_emphasis_lowest"
@@ -70,55 +111,5 @@
                 android:visibility="gone" />
         </com.google.android.material.card.MaterialCardView>
     </com.google.android.material.card.MaterialCardView>
-
-    <org.wordpress.android.widgets.QuickStartFocusPoint
-        android:id="@+id/quick_start_icon_focus_point"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center"
-        android:contentDescription="@string/quick_start_focus_point_description"
-        android:elevation="@dimen/quick_start_focus_point_elevation"
-        android:translationX="@dimen/quick_start_focus_point_small_offset_negative"
-        android:translationY="@dimen/quick_start_focus_point_small_offset_negative"
-        app:layout_constraintStart_toStartOf="@id/blavatar_container"
-        app:layout_constraintTop_toTopOf="@+id/blavatar_container"
-        app:size="small"
-        tools:ignore="RtlSymmetry" />
-
-    <org.wordpress.android.widgets.MySiteTitleAndSubtitleLabelView
-        android:id="@+id/site_info_container"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_extra_large"
-        android:minHeight="@dimen/my_site_blavatar_sz"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/switch_site"
-        app:layout_constraintStart_toEndOf="@id/blavatar_container"
-        app:layout_constraintTop_toTopOf="@+id/blavatar_container" />
-
-    <org.wordpress.android.widgets.QuickStartFocusPoint
-        android:id="@+id/quick_start_title_focus_point"
-        android:layout_width="@dimen/quick_start_focus_point_size"
-        android:layout_height="@dimen/quick_start_focus_point_size"
-        android:layout_gravity="center_vertical|center"
-        android:contentDescription="@string/quick_start_focus_point_description"
-        android:elevation="@dimen/quick_start_focus_point_elevation"
-        app:layout_constraintEnd_toEndOf="@id/site_info_container"
-        app:layout_constraintTop_toTopOf="@id/site_info_container"
-        tools:ignore="RtlSymmetry" />
-
-    <ImageButton
-        android:id="@+id/switch_site"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_small"
-        android:background="@drawable/ripple_oval"
-        android:contentDescription="@string/my_site_btn_switch_site"
-        android:padding="@dimen/margin_large"
-        android:src="@drawable/ic_chevron_down_white_24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/blavatar_container"
-        app:tint="?attr/wpColorOnSurfaceMedium" />
 
 </org.wordpress.android.ui.mysite.CollapsibleToolbar>

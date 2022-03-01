@@ -126,9 +126,9 @@ class MySiteFragment : Fragment(R.layout.my_site_fragment),
     }
 
     private fun MySiteFragmentBinding.setupToolbar() {
-        header.avatar.setOnClickListener {
-            viewModel.onAvatarPressed()
-        }
+//        header.avatar.setOnClickListener {
+//            viewModel.onAvatarPressed()
+//        }
 
         val avatar = root.findViewById<ImageView>(R.id.avatar)
 
@@ -536,7 +536,6 @@ class MySiteFragment : Fragment(R.layout.my_site_fragment),
         Log.e("siteInfo Card", mySiteInfoCard.toString())
         header.loadMySiteDetails(mySiteInfoCard)
 
-        collapsingToolbarLayout?.title = mySiteInfoCard.title
         recyclerView.setVisible(true)
         actionableEmptyView.setVisible(false)
         viewModel.setActionableEmptyViewGone(actionableEmptyView.isVisible) {
@@ -588,7 +587,7 @@ class MySiteFragment : Fragment(R.layout.my_site_fragment),
 //            mySiteBlavatar.visibility = View.GONE
 //        }
 //        quickStartIconFocusPoint.setVisibleOrGone(true)
-        if (item.onTitleClick != null) {
+        /*if (item.onTitleClick != null) {
             siteInfoContainer.title.setOnClickListener { item.onTitleClick.click() }
         } else {
             siteInfoContainer.title.setOnClickListener(null)
@@ -597,7 +596,7 @@ class MySiteFragment : Fragment(R.layout.my_site_fragment),
 //        quickStartTitleFocusPoint.setVisibleOrGone(true)
         siteInfoContainer.subtitle.text = item.url
         siteInfoContainer.subtitle.setOnClickListener { item.onUrlClick.click() }
-        switchSite.setOnClickListener { item.onSwitchSiteClick.click() }
+        switchSite.setOnClickListener { item.onSwitchSiteClick.click() }*/
     }
 
     private fun showSwipeToRefreshLayout(isEnabled: Boolean) {

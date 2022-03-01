@@ -8,16 +8,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingEnd="@dimen/margin_medium_large"
-    android:visibility="gone"
     tools:ignore="RtlSymmetry">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar_main"
+        app:layout_collapseMode="pin"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:layout_collapseMode="pin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:theme="@style/WordPress.ActionBar" />
 
 
@@ -75,7 +72,7 @@
         android:translationX="@dimen/quick_start_focus_point_small_offset_negative"
         android:translationY="@dimen/quick_start_focus_point_small_offset_negative"
         app:layout_constraintStart_toStartOf="@id/blavatar_container"
-        app:layout_constraintTop_toTopOf="@+id/blavatar_container"
+        app:layout_constraintTop_toTopOf="@id/blavatar_container"
         app:size="small"
         tools:ignore="RtlSymmetry" />
 
@@ -106,13 +103,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_extra_large"
         android:background="@drawable/ripple_oval"
         android:contentDescription="@string/my_site_btn_switch_site"
         android:padding="@dimen/margin_large"
         android:src="@drawable/ic_chevron_down_white_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_main"
+        app:layout_constraintTop_toTopOf="parent"
         app:tint="?attr/wpColorOnSurfaceMedium" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,13 +45,12 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar_main"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:visibility="visible"
+        android:layout_height="110dp"
         app:liftOnScroll="false">
 
         <include
             android:id="@+id/header"
-            layout = "@layout/my_site_fragment_motion_layout_custom_header"/>
+            layout="@layout/my_site_fragment_motion_layout_custom_header" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
