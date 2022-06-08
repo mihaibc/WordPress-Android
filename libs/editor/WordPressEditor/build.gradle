@@ -104,7 +104,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$gradle.ext.kotlinVersion"
     implementation "org.jsoup:jsoup:1.10.3"
 
-    implementation 'com.google.code.gson:gson:2.6.2'
+    implementation 'com.google.code.gson:gson:2.9.0'
 
     lintChecks 'org.wordpress:lint:1.1.0'
 }

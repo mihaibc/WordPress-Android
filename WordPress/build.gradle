@@ -323,7 +323,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$gradle.ext.kotlinVersion"
 
     // Provided by maven central
-    implementation 'com.google.code.gson:gson:2.6.2'
+    implementation 'com.google.code.gson:gson:2.9.0'
 
     implementation "androidx.core:core:$androidxCoreVersion"
     implementation "androidx.core:core-ktx:$androidxCoreVersion"
