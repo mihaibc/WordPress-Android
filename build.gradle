@@ -46,7 +46,7 @@ ext {
     androidxTestCoreVersion = '1.4.0'
     assertJVersion = '3.11.1'
     espressoVersion = '3.4.0'
-    mockitoCoreVersion = "3.3.3"
+    mockitoCoreVersion = "4.8.0"
     nhaarmanMockitoVersion = "2.2.0"
 }
 
