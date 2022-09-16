@@ -312,7 +312,7 @@ dependencies {
     implementation project(path:':libs:image-editor')
 
     // Provided by maven central
-    implementation 'com.google.code.gson:gson:2.6.2'
+    implementation 'com.google.code.gson:gson:2.9.1'
 
     implementation "androidx.core:core:$androidxCoreVersion"
     implementation "androidx.core:core-ktx:$androidxCoreVersion"
