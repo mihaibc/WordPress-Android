@@ -67,7 +67,7 @@ ext {
     glideVolleyVersion = '4.6.1@aar'
     googleAutoServiceVersion = '1.0'
     googleExoPlayerVersion = '2.13.3'
-    googleGsonVersion = '2.6.2'
+    googleGsonVersion = '2.10'
     googleMaterialVersion = '1.2.1'
     googlePlayServicesAuthVersion = '20.3.0'
     googlePlayServicesCodeScannerVersion = '16.0.0-beta1'
